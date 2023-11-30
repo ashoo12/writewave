@@ -1,0 +1,20 @@
+
+{% include 'header.html' %}
+{% block content%}
+<form id="typingForm" action="{{ url_for('typing_speed') }}" method="post">
+    <textarea class="typing_textarea" placeholder="Type here" name="text"></textarea>
+
+</form>
+
+<script>
+    var typingTimer;
+    var doneTypingInterval = 6000;  // 6 seconds
+
+    document.querySelector('.typing_textarea').addEventListener('input', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(function () {
+            document.getElementById('typingForm').submit();
+        }, doneTypingInterval);
+    });
+</script>
+{% endblock %}
